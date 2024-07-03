@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pacman</title>
+  </head>
+  <body>
+    <div class="game-container">
+      <canvas id="canvas" width="420" height="500"></canvas>
+      <div style="display: none">
+        <img id="animation" src="animations.gif" width="140" height="20" />
+        <img id="ghosts" src="ghost.png" width="140" height="20" />
+      </div>
+      <div class="right-col">
+        <p>Click here</p>
+        <img src="./assets/Sound webpage_img/play (1).jpg" alt="" id="icon" />
+      </div>
+    </div>
+
+    <audio id="mySong">
+      <source
+        src="assets/Sound webpage_img/Monkeys Spinning Monkeys.mp3"
+        type="audio/mp3"
+      />
+    </audio>
+
+    <script>
+      var mySong = document.getElementById("mySong");
+      var icon = document.getElementById("icon");
+
+      // Automatically play music when the game starts
+      window.addEventListener("load", function () {
+        mySong.play();
+        icon.src = "./assets/Sound webpage_img/play (1).jpg";
+      });
+
+      // Toggle music play/pause on button click
+      icon.onclick = function () {
+        if (mySong.paused) {
+          mySong.play();
+          icon.src = "./assets/Sound webpage_img/play (1).jpg";
+        } else {
+          mySong.pause();
+          icon.src = "./assets/Sound webpage_img/pause.jpg";
+        }
+      };
+
+      // Loop music when it ends
+      mySong.addEventListener("ended", function () {
+        this.currentTime = 0;
+        this.play();
+      });
+
+      // Game over function
+      function gameOver() {
+        // Stop music and reset game logic as needed
+        mySong.pause();
+        // Additional game over logic...
+      }
+    </script>
+    <script src="ghost.js"></script>
+    <script src="pacman.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
